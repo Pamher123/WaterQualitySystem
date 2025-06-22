@@ -1,0 +1,2 @@
+#WaterQualitySystem
+本项目基于SpringBoot与JavaEE，前端基于vue3+elementplus 构建了一个水质监测系统，远程传感器将采集到的数据通过mqtt协议传递给后端后，写入本地MySQL数据库中，用户可以在前端对数据进行监视，增删改查等操作
