@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pamher.waterquality.mapper.UserMapper">
+
+    <!-- 根据用户名查找用户 -->
+    <select id="findByUsername" parameterType="String" resultType="com.pamher.waterquality.pojo.User">
+        SELECT * FROM users WHERE username = #{username}
+    </select>
+
+    <!-- 根据用户 ID 查找用户 -->
+    <select id="findById" parameterType="Integer" resultType="com.pamher.waterquality.pojo.User">
+        SELECT * FROM users WHERE user_id = #{userId}
+    </select>
+    <!-- 获取所有用户-->
+    <select id="getAllUsers" resultType="com.pamher.waterquality.pojo.User">
+        SELECT * FROM users
+    </select>
+
+    <!-- 保存用户（新增） -->
+    <insert id="saveUser" parameterType="com.pamher.waterquality.pojo.User">
+        INSERT INTO users (username, password, is_root)
+        VALUES (#{username}, #{password}, #{isRoot})
+        <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- 更新用户信息 -->
+    <update id="updateUser" parameterType="com.pamher.waterquality.pojo.User">
+        UPDATE users SET username = #{username}, password = #{password} WHERE user_id = #{userId}
+    </update>
+
+    <!-- 查询用户的 root 状态 -->
+    <select id="getUserRootStatus" parameterType="Integer" resultType="java.lang.Boolean">
+        SELECT is_root FROM users WHERE user_id = #{userId}
+    </select>
+
+</mapper>

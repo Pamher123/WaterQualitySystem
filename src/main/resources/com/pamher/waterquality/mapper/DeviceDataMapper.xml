@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pamher.waterquality.mapper.DeviceDataMapper">
+<select id="getAllDevices" resultType="com.pamher.waterquality.pojo.DeviceData">
+    SELECT * FROM  device_data
+
+</select>
+
+    <!-- 插入设备数据 -->
+    <insert id="insertDeviceData" parameterType="com.pamher.waterquality.pojo.DeviceData">
+        INSERT INTO device_data
+        ( water_temperature, oxygen_content, nitrogen_content, phosphorus_content, ph_value, timestamp, turbidity)
+        VALUES
+            ( #{waterTemperature}, #{oxygenContent}, #{nitrogenContent}, #{phosphorusContent}, #{phValue}, #{timestamp}, #{turbidity})
+    </insert>
+
+
+</mapper>
